@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Aplikasi Informasi Sepak Bola</title>
+  <meta name="description" content="PWA Aplikasi Informasi Sepak Bola"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/materialize.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#00897B"/>
+  <link rel="apple-touch-icon" href="/icon-192x192.png">
+</head>
+<body>
+  <!-- Navigasi -->
+  <nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo" id="logo-container">ASIKLA</a>
+      <a href="#" class="sidenav-trigger" data-target="nav-mobile">☰</a>
+      
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+
+  <!-- Site Header-->
+  <div class="site-header"></div>
+  <!-- Akhir Site Header-->
+
+  <!-- marque -->
+  <div class="teks-bergerak">
+    <marquee behavior="alternate"><i> Selamat Datang di Aplikasi Informasi Sepak Bola...............!!!</i></marquee>
+  </div>
+  <!-- Akhir Marque -->
+
+  <div class="container" id="body-content"></div>
+
+  <!-- Footer -->
+  <footer>
+    <img src="/img/footer.png" class="footer-logo">
+    <p>Aplikasi Informasi Sepak Bola (ASIKLA) | &#169; 2020, Siti Aida Siswarana</p>
+  </footer>
+  <!-- Akhir Footer-->
+
+  <script src="js/materialize.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  
+  <script>
+    // REGISTER SERVICE WORKER
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(function() {
+            console.log("Pendaftaran ServiceWorker berhasil");
+          })
+          .catch(function() {
+            console.log("Pendaftaran ServiceWorker gagal");
+          });
+      });
+    } else {
+      console.log("ServiceWorker belum didukung browser ini.");
+    }
+
+    // REQUEST API UNTUK PERTAMA KALI
+    document.addEventListener("DOMContentLoaded", function() {
+        getLeagues();
+        getTeams();
+        getPlayers();
+    });
+
+   
+  </script>
+</body>
+</html>
